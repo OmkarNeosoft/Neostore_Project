@@ -12,6 +12,11 @@ import { useEffect, useState } from "react";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import "./Style.css";
+import { Link } from "react-router-dom";
+import { BsPencilSquare } from "react-icons/bs";
+import { BiLogIn } from "react-icons/bi";
+import { FaUserAlt, FaUserCircle, FaUser } from "react-icons/fa";
+import { RiLogoutCircleRLine } from "react-icons/ri";
 
 export default function Header(props) {
   const [flag, setFlag] = useState(1);
@@ -89,22 +94,48 @@ export default function Header(props) {
               <AiOutlineShoppingCart size={"30px"} style={{ color: "black" }} />
               {cartvalue}
             </a>
-            <NavDropdown className="ml-1" id=" navbarScrollingDropdown">
-              <NavDropdown.Item href="/login">Login</NavDropdown.Item>
-              <NavDropdown.Item href="/register">Register</NavDropdown.Item>
-              {localStorage.getItem("user") ? (
-                <NavDropdown.Item href="/myaccount">
-                  My Account
-                </NavDropdown.Item>
-              ) : (
-                " "
-              )}
-
-              {localStorage.getItem("user") ? (
-                <NavDropdown.Item onClick={logout}>Logout</NavDropdown.Item>
-              ) : (
-                " "
-              )}
+            <NavDropdown className="text-white">
+              <NavDropdown.Item>
+                <Link to="/login">
+                  {localStorage.getItem("user") ? (
+                    " "
+                  ) : (
+                    <h6 className="text-dark">Login</h6>
+                  )}
+                </Link>
+              </NavDropdown.Item>
+              <NavDropdown.Item>
+                <Link to="/register">
+                  {localStorage.getItem("user") ? (
+                    " "
+                  ) : (
+                    <h6 className="text-dark">Register</h6>
+                  )}
+                </Link>
+              </NavDropdown.Item>
+              <NavDropdown.Item>
+                {localStorage.getItem("user") ? (
+                  <h6
+                    className="text-dark"
+                    onClick={() => {
+                      navigate("/myaccount");
+                    }}
+                  >
+                    Profile
+                  </h6>
+                ) : (
+                  " "
+                )}
+              </NavDropdown.Item>
+              <NavDropdown.Item>
+                {localStorage.getItem("user") ? (
+                  <h6 className="text-dark" onClick={logout}>
+                    Logout
+                  </h6>
+                ) : (
+                  " "
+                )}
+              </NavDropdown.Item>
             </NavDropdown>
           </form>
         </Navbar.Collapse>

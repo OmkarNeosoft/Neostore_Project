@@ -5,9 +5,11 @@ import Header from "./Header";
 import "./Style.css";
 import { useNavigate } from "react-router-dom";
 import Pagination from "./Pagination";
-import { StarsRating } from "stars-rating-react-hooks";
+// import { StarsRating } from "stars-rating-react-hooks";
 import { BiLike, BiDislike, BiCategoryAlt, BiColorFill } from "react-icons/bi";
 import { MdOutlineCategory, MdOutlineColorLens } from "react-icons/md";
+import { FcNumericalSorting12, FcNumericalSorting21 } from "react-icons/fc";
+import ReactStars from "react-rating-stars-component";
 
 function Product(props) {
   const [postdata, setPostdata] = useState([]);
@@ -63,6 +65,7 @@ function Product(props) {
       state: { id: id },
     });
   };
+
   const config = {
     totalStars: 5,
     initialSelectedValue: 4.5,
@@ -238,15 +241,17 @@ function Product(props) {
               }}
             />
             <br />
-            <div className="row" style={{ border: "1px solid black" }}>
-              <div className="col-lg-4  ">
-                <button className="btn btn-primary" onClick={HighToLow}>
-                  {" "}
-                  Low to High
+            <div className="row">
+              <div className="col-lg-6 ">
+                <button className="sortbtn" onClick={HighToLow}>
+                  <FcNumericalSorting12 /> Low to High
                 </button>
+                &nbsp;&nbsp;&nbsp;
               </div>
-              <div className="col-lg-8  ">
-                <button className="btn btn-primary" onClick={LowToHigh}>
+              <div className="col-lg-6  ">
+                <button className="sortbtn" onClick={LowToHigh}>
+                  {" "}
+                  <FcNumericalSorting21 />
                   High to Low
                 </button>
               </div>
@@ -294,7 +299,17 @@ function Product(props) {
                         </h6>
 
                         <div>
-                          <StarsRating
+                          <ReactStars
+                            count={5}
+                            // onChange={(e) => { setRating(e.target.value) }}
+                            size={25}
+                            activeColor="#ffd700"
+                            className="center "
+                            edit={false}
+                            isHalf={true}
+                            value={val.product_rating}
+                          />
+                          {/* <StarsRating
                             onStarsRated={(value) => {
                               alert(` You rated this product ${value}`);
                             }}
@@ -302,7 +317,7 @@ function Product(props) {
                               setSelecting({ isSelecting, selectingValue });
                             }}
                             config={config}
-                          />
+                          /> */}
                         </div>
 
                         <br />

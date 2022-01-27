@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { FetchingProduct } from "../config/MyService";
+import { useNavigate } from "react-router";
 import Footer from "./Footer";
 import Header from "./Header";
 import "./Style.css";
@@ -7,14 +8,22 @@ import "./Style.css";
 function Dashboard(props) {
   const [productdata, setProductData] = useState([]);
   const [search, setSearch] = useState("");
+  const navigate = useNavigate();
 
   const [temp, setTemp] = useState([]);
   const FetchAllProduct = () => {
-    FetchingProduct().then((res) => {
-      console.log(res.data);
-      setProductData(res.data.product);
-      setTemp(res.data.product);
-    });
+    FetchingProduct()
+      .then((res) => {
+        console.log(res.data);
+        setProductData(res.data.product);
+        setTemp(res.data.product);
+      })
+      .catch((err) => {
+        if (err) {
+          alert("Oops! :-( There is some issue at our Server!");
+          navigate("/500");
+        }
+      });
   };
   useEffect(() => {
     FetchAllProduct();

@@ -6,7 +6,6 @@ import Header from "./Header";
 import { createOrders } from "../config/MyService";
 import axios from "axios";
 
-
 export default function Cart() {
   const navigate = useNavigate();
   const [itemPresent, setItemPresent] = useState([]);

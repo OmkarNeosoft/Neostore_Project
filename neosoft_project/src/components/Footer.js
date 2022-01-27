@@ -12,8 +12,8 @@ export default function Footer() {
 
   return (
     <div>
-      <footer >
-        <div class="container-fluid footer" style={{position:"absolute"}}>
+      <footer>
+        <div class="container-fluid footer" style={{ position: "absolute" }}>
           <div class="row">
             <div class="col-md-4 footer-column mt-5">
               <ul class="nav flex-column">
@@ -60,6 +60,7 @@ export default function Footer() {
                     Gurantee and Return Policy
                   </a>
                 </li>
+
                 <li class="nav-item">
                   <a class="nav-link text-white" href="#">
                     Privacy Policy

@@ -18,6 +18,7 @@ import ChangePassword from "./Myprofile/ChangePassword";
 import Address from "./Myprofile/Address";
 import Checkout from "./components/Checkout";
 import Invoice from "./components/Invoice";
+import InternalServerError from "./components/InternalServerError";
 
 function App() {
   return (
@@ -42,6 +43,8 @@ function App() {
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/order" element={<Order />} />
           <Route path="/invoice" element={<Invoice />} />
+          <Route path="/500" element={<InternalServerError />} />
+
         </Routes>
       </BrowserRouter>
     </div>

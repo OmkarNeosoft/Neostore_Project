@@ -30,14 +30,21 @@ export default function Register() {
       email: email,
       password: password,
     };
-    AddingUser(data).then((res) => {
-      if (res.data.err) {
-        alert(res.data.err);
-      } else {
-        alert(res.data.msg);
-        navigate("/login");
-      }
-    });
+    AddingUser(data)
+      .then((res) => {
+        if (res.data.err) {
+          alert(res.data.err);
+        } else {
+          alert(res.data.msg);
+          navigate("/login");
+        }
+      })
+      .catch((err) => {
+        if (err) {
+          alert("Oops! :-( There is some issue at our Server!");
+          navigate("/500");
+        }
+      });
   };
   const handleSocialLogin = (user) => {
     console.log(user);

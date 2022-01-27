@@ -8,10 +8,10 @@ import { SiGmail } from "react-icons/si";
 import { FaTwitter } from "react-icons/fa";
 import Header from "./Header";
 import Footer from "./Footer";
-
 import "./Login.css";
 
 function Login() {
+  const navigate = useNavigate();
   const [data, setData] = useState("");
 
   const handleSocialLogin = (user) => {
@@ -48,21 +48,27 @@ function Login() {
     setState({ ...state, [name]: value });
   };
 
-  const navigate = useNavigate();
   const post = (event) => {
     event.preventDefault();
-    login(state).then((res) => {
-      if (res.data.err == 0) {
-        localStorage.setItem("_token", res.data.token);
-        localStorage.setItem("userdetails", state.email);
-        localStorage.setItem("user", state.email);
+    login(state)
+      .then((res) => {
+        if (res.data.err == 0) {
+          localStorage.setItem("_token", res.data.token);
+          localStorage.setItem("userdetails", state.email);
+          localStorage.setItem("user", state.email);
 
-        navigate("/");
-      }
-      if (res.data.err == 1) {
-        console.log(res.data);
-      }
-    });
+          navigate("/");
+        }
+        if (res.data.err == 1) {
+          console.log(res.data);
+        }
+      })
+      .catch((err) => {
+        if (err) {
+          alert("Oops! :-( There is some issue at our Server!");
+          navigate("/500");
+        }
+      });
   };
 
   return (

@@ -74,3 +74,7 @@ export function FetchAddress(email) {
     headers: { authorization: `Bearer ${token}` },
   });
 }
+export function Starrating(id, data) {
+  console.log(data);
+  return axios.put(`${MAIN_URL}Rating/${id}`, data);
+}

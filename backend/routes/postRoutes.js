@@ -300,6 +300,26 @@ router.post("/editaddress", (req, res) => {
     }
   );
 });
+router.put("/Rating/:id", (req, res) => {
+  let id = req.params.id;
+  let product_rating = req.body.newrating;
+
+  console.log(id);
+  console.log(product_rating);
+  console.log(req.body);
+
+  productmodel.updateOne(
+    { _id: id },
+    { $set: { product_rating: product_rating } },
+    (err) => {
+      if (err) {
+        res.json({ err: err });
+      } else {
+        res.json({ msg: "Rating Updated Succesfully" });
+      }
+    }
+  );
+});
 
 //changepassword in myaccount
 router.put("/changepass/:id", (req, res) => {

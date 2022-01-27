@@ -12,7 +12,6 @@ import jwt_decode from "jwt-decode";
 const ref = React.createRef();
 
 export default function Invoice() {
-
   const [temp, settemp] = useState([]);
   const navigate = useNavigate();
   const { state } = useLocation();

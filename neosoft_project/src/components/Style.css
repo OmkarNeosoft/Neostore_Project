@@ -120,9 +120,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  
 }
-.center img{
+.center img {
   height: 205px;
   width: 180px;
 }
@@ -348,6 +347,19 @@ h6 {
   font-weight: 600;
 }
 
+.sortbtn {
+  appearance: none;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid black;
+  color: red;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: normal;
+  min-height: 30px;
+  padding: 8px 20px;
+  width: 35%;
+}
+
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
   .center {
     height: 520px;
@@ -358,7 +370,6 @@ h6 {
   .property-description {
     font-size: 16px;
   }
- 
 }
 
 @media only screen and (min-device-width: 912px) and (max-device-width: 1386px) {
@@ -420,8 +431,3 @@ h6 {
     width: 100%;
   }
 }
-
-
-
-
-

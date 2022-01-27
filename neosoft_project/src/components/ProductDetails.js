@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Footer from "./Footer";
-import { FetchingProductData } from "../config/MyService";
+import { FetchingProductData, Starrating } from "../config/MyService";
 import { useLocation } from "react-router";
 import ReactImageMagnify from "react-image-magnify";
 import Header from "./Header";
+import { Rating } from "react-simple-star-rating";
 import Zoom from "react-img-zoom";
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import "./Style.css";
@@ -19,9 +20,9 @@ import ReactStars from "react-rating-stars-component";
 
 function ProductDetails(props) {
   const [itemsdata, setPostdata] = useState([]);
+  const [rating, setrating] = useState(0);
   const [images, setimages] = useState([]);
   const [mainimage, setmainimage] = useState();
-  const [rating, setrating] = useState();
   const { state } = useLocation();
 
   const ratingChanged = (rating) => {
@@ -38,6 +39,21 @@ function ProductDetails(props) {
     });
   }, []);
   console.log(itemsdata);
+
+  const starsRating = (rate) => {
+    let newrating = ((rate / 20 + rating / 20) / 2).toFixed(1);
+    let data = { newrating: newrating };
+
+    setrating(rate);
+    console.log(rate / 20);
+    console.log(data);
+    Starrating(state.id, data).then((res) => {
+      if (res.data.err) {
+        alert(res.data.err);
+      } else {
+      }
+    });
+  };
 
   const addtoCart = (obj) => {
     console.log(obj.name);
@@ -115,7 +131,7 @@ function ProductDetails(props) {
               </TransformWrapper>
             </div>
             <div className="col-md-6 pro">
-              <div className="text-center">
+              {/* <div className="text-center">
                 <ReactStars
                   count={5}
                   onChange={ratingChanged}
@@ -123,7 +139,9 @@ function ProductDetails(props) {
                   activeColor="#ffd700"
                   className="card"
                 />
-              </div>
+              </div> */}
+              <Rating onClick={starsRating} ratingValue={rating} />
+              <hr />
               <h1 className="">{itemsdata.product_name}</h1>
               <br />
               <h5>
